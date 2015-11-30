@@ -8,19 +8,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
    <children>
-      <SplitPane dividerPositions="0.1306532663316583" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.1306532663316583" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane>
                <children>
-                  <ButtonBar layoutX="20.0" prefHeight="49.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="0.0">
+                  <ButtonBar prefHeight="75.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <buttons>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Nuevo Juego" />
-                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="100.0" text="¿Cómo jugar?" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Acerca de" />
-                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Rankings" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Salir" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Nuevo cubo" />
+                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Desordenar" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Resolver" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Reto multijugador" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Ranking" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="¿Cómo jugar?" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Acerca de Rubik" />
                      </buttons>
                   </ButtonBar>
                </children>

@@ -12,7 +12,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.jpl.games.model.Move;
 import com.jpl.games.model.Moves;
+import com.jpl.games.model.Rubik;
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
@@ -25,6 +32,13 @@ public class RubikMain extends Application {
     
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private Rubik rubik;
+    
+    private LocalTime time=LocalTime.now();
+    private Timeline timer;
+    private final StringProperty clock = new SimpleStringProperty("00:00:00");
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+    
     
     @Override
     public void start(Stage primaryStage){
@@ -34,7 +48,8 @@ public class RubikMain extends Application {
         initRootLayout();
         showRubikInterface();
     }
- public void initRootLayout() {
+    
+    public void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -62,7 +77,8 @@ public class RubikMain extends Application {
             e.printStackTrace();
         }
     }
- 
+    
+    
     public Stage getPrimaryStage() {
         return primaryStage;
     }
