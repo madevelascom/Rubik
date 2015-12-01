@@ -32,6 +32,7 @@ public class RubikMain extends Application {
     
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private BorderPane RubikModel;
     private Rubik rubik;
     
     private LocalTime time=LocalTime.now();
@@ -39,12 +40,14 @@ public class RubikMain extends Application {
     private final StringProperty clock = new SimpleStringProperty("00:00:00");
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
     
+    private Moves moves=new Moves();
     
     @Override
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cubo Rubik");
-
+        
+    
         initRootLayout();
         showRubikInterface();
     }
@@ -69,15 +72,18 @@ public class RubikMain extends Application {
             // Load  overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(RubikMain.class.getResource("RubikInterface.fxml"));
-            AnchorPane RubikInterface = (AnchorPane) loader.load();
-
-            // Set person overview into the center of root layout.
+            BorderPane RubikInterface = (BorderPane) loader.load();
+        
             rootLayout.setCenter(RubikInterface);
+            rubik=new Rubik();
+            RubikInterface.setCenter(rubik.getSubScene());
+            
+           
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+  
     
     public Stage getPrimaryStage() {
         return primaryStage;

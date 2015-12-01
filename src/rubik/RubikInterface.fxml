@@ -8,27 +8,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
-   <children>
-      <SplitPane dividerPositions="0.1306532663316583" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane>
-               <children>
-                  <ButtonBar prefHeight="75.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <buttons>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Nuevo cubo" />
-                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="120.0" text="Desordenar" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Resolver" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Reto multijugador" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Ranking" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="¿Cómo jugar?" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Acerca de Rubik" />
-                     </buttons>
-                  </ButtonBar>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="319.0" prefWidth="560.0" />
-        </items>
-      </SplitPane>
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <ButtonBar buttonMinWidth="100.0" prefHeight="40.0" prefWidth="800.0">
+              <buttons>
+                  <Button mnemonicParsing="false" text="Reiniciar Cubo" />
+                <Button mnemonicParsing="false" text="Desordenar" />
+                <Button mnemonicParsing="false" text="Resolver" />
+                  <Button mnemonicParsing="false" text="Multijugador" />
+                  <Button mnemonicParsing="false" text="Posiciones" />
+                  <Button mnemonicParsing="false" text="Como jugar" />
+                  <Button mnemonicParsing="false" text="Acerca de" />
+              </buttons>
+            </ButtonBar>
+        </buttons>
+      </ButtonBar>
+   </top>
+</BorderPane>
