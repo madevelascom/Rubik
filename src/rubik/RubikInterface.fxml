@@ -8,14 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
             <ButtonBar buttonMinWidth="100.0" prefHeight="40.0" prefWidth="800.0">
               <buttons>
-                  <Button mnemonicParsing="false" text="Reiniciar Cubo" />
-                <Button mnemonicParsing="false" text="Desordenar" />
+                  <Button mnemonicParsing="false" onAction="#Reset" text="Reiniciar Cubo" />
+                <Button mnemonicParsing="false" onAction="#Scramble" text="Desordenar" />
                 <Button mnemonicParsing="false" text="Resolver" />
                   <Button mnemonicParsing="false" text="Multijugador" />
                   <Button mnemonicParsing="false" text="Posiciones" />

@@ -37,8 +37,24 @@ public class RubikMain extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private BorderPane RubikInterface;
-    private Rubik rubik;
+    public Rubik rubik=new Rubik();
     private Scene scene;
+    public Moves moves=new Moves();
+    
+    public LocalTime time=LocalTime.now();
+    public Timeline timer;
+    public final StringProperty clock = new SimpleStringProperty("00:00:00");
+    public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+
+    public Rubik getRubik() {
+        return rubik;
+    }
+
+    public void setRubik(Rubik rubik) {
+        this.rubik = rubik;
+    }
+    
+    
     
     @Override
     public void start(Stage primaryStage){
@@ -74,7 +90,6 @@ public class RubikMain extends Application {
             RubikInterface = (BorderPane) loader.load();
         
             rootLayout.setCenter(RubikInterface);
-            rubik=new Rubik();
             RubikInterface.setCenter(rubik.getSubScene());
             RubikInterface.getChildren().stream().filter(withMoveButtons())
                     .forEach(n->{
@@ -111,6 +126,29 @@ public class RubikMain extends Application {
                     .findFirst().ifPresent(n->rubik.isHoveredOnClick().set(((Button)n).isHover()));
             });
         rubik.rotateFace(btRot);
+    }
+    
+    public void ScrambleCube(){
+        rubik.doScramble();
+        rubik.isOnScrambling().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("Revuelto!");
+                moves=new Moves();
+                time=LocalTime.now();
+                timer.playFromStart();
+            }
+        });
+    }
+    
+    private void doReplay(){
+        RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(true));
+        rubik.doReplay(moves.getMoves());
+        rubik.isOnReplaying().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("replayed!");
+                RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(false));
+            }
+        });
     }
     
     private void updateArrow(String face, boolean hover){
