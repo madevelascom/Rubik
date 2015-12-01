@@ -5,10 +5,17 @@
  */
 package rubik;
 
+import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,17 +39,22 @@ public class RubikController implements Initializable {
     private Label label;
     @FXML
     private Rubik rubik;
+    @FXML
+    private LocalTime time=LocalTime.now();
+    @FXML
+    private Timeline timer;
+    @FXML
+    private final StringProperty clock = new SimpleStringProperty("00:00:00");
+    @FXML
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+    @FXML
+    private Moves moves=new Moves();
     
     @FXML 
     protected void handleSubmitNuevoCubo(ActionEvent event) {
        //rubik=new Rubik();
     }
     
-    @FXML
-    private void handleAcercaDe(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
     
     @FXML
     private void handleHowTo(ActionEvent event) {
@@ -57,6 +69,19 @@ public class RubikController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    private void doScramble(){
+        rubik.doScramble();
+        rubik.isOnScrambling().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("scrambled!");
+                moves=new Moves();
+                time=LocalTime.now();
+                timer.playFromStart();
+            }
+        });
     }
     
     @Override

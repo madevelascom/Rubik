@@ -98,7 +98,8 @@ public class ContentModel {
         
         subScene = new SubScene(root3D,paneW,paneH,true,javafx.scene.SceneAntialiasing.BALANCED);
         subScene.setCamera(camera);
-        subScene.setFill(Color.CADETBLUE);
+        //Cambiado a blanco?
+        subScene.setFill(Color.WHITE);
         setListeners(true);
     }
     
