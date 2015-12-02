@@ -17,23 +17,11 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import javafx.animation.Timeline;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToolBar;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import rubik.RubikMain;
@@ -45,17 +33,12 @@ import rubik.RubikMain;
  * @author Administrator
  */
 public class RubikController extends RubikMain implements Initializable {
-    
-    /*@FXML
-    private Rubik rubik;
-    rubik = new getRubik();*/
-    
+       
     @FXML
     private void Scramble(){
         rubik.doReset();
         ScrambleCube();
     }
-    
 
     @FXML
     private void Reset(){

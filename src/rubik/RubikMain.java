@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
+import javafx.scene.image.Image;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -20,13 +21,11 @@ import java.util.function.Predicate;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -39,7 +38,7 @@ public class RubikMain extends Application {
     private BorderPane RubikInterface;
     private Scene scene;
     
-    public  Rubik rubik=new Rubik();
+    public static Rubik rubik=new Rubik();
     public Moves moves=new Moves();
     
     public LocalTime time=LocalTime.now();
@@ -52,11 +51,12 @@ public class RubikMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cubo Rubik");     
-    
+        
+        Image applicationIcon = new Image(getClass().getResourceAsStream("rubik_s_cube.png"));
+        this.primaryStage.getIcons().add(applicationIcon);
         initRootLayout();
-        showRubikInterface();
-        
-        
+        showRubikInterface();  
+
     }
   
     public void initRootLayout() {
@@ -81,7 +81,8 @@ public class RubikMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(RubikMain.class.getResource("RubikInterface.fxml"));
             RubikInterface = (BorderPane) loader.load();
-        
+            
+            //Load 3d model and buttonbar
             rootLayout.setCenter(RubikInterface);
             RubikInterface.setCenter(rubik.getSubScene());
             
@@ -117,14 +118,14 @@ public class RubikMain extends Application {
             .forEach(tb->{
                 ((ToolBar)tb).getItems().stream()
                     .filter(withMoveButtons().and(withButtonTextName(btRot)))
-                    .findFirst().ifPresent(n->this.rubik.isHoveredOnClick().set(((Button)n).isHover()));
+                    .findFirst().ifPresent(n->rubik.isHoveredOnClick().set(((Button)n).isHover()));
             });
-        this.rubik.rotateFace(btRot);
+        rubik.rotateFace(btRot);
     }
     
     public void ScrambleCube(){
-        this.rubik.doScramble();
-        this.rubik.isOnScrambling().addListener((ov,v,v1)->{
+        rubik.doScramble();
+        rubik.isOnScrambling().addListener((ov,v,v1)->{
             if(v && !v1){
                 System.out.println("Revuelto!");
                 moves=new Moves();
@@ -134,8 +135,8 @@ public class RubikMain extends Application {
     
     public void doReplay(){
         RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(true));
-        this.rubik.doReplay(moves.getMoves());
-        this.rubik.isOnReplaying().addListener((ov,v,v1)->{
+        rubik.doReplay(moves.getMoves());
+        rubik.isOnReplaying().addListener((ov,v,v1)->{
             if(v && !v1){
                 System.out.println("replayed!");
                 RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(false));
