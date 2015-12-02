@@ -33,12 +33,8 @@ public class AcercaController implements Initializable {
     private Label label;
     
     @FXML
-    private void regresar(ActionEvent event) throws IOException {   
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("RubikInterface.fxml"));    
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private void salir(ActionEvent event) {   
+        System.exit(0);
     }
     
     

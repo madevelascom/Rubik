@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,11 +8,21 @@
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.AcercaController">
    <children>
-      <Button fx:id="button" layoutX="400.0" layoutY="148.0" mnemonicParsing="false" onAction="#regresar" prefHeight="42.0" prefWidth="129.0" text="Regresar" />
+      <Button fx:id="button" layoutX="400.0" layoutY="148.0" mnemonicParsing="false" onAction="#salir" prefHeight="42.0" prefWidth="129.0" text="Salir" />
       <Label fx:id="label" layoutX="180.0" layoutY="35.0" prefHeight="84.0" prefWidth="493.0" text="Acerca de Rubik's Cube">
          <font>
             <Font name="Aparajita Italic" size="60.0" />
          </font>
       </Label>
+      <TextArea editable="false" layoutY="210.0" prefHeight="140.0" prefWidth="800.0" text="Rubik's Cube es un software basado en el trabajo RubikFX de Jose Pereda con licencia X. Para mas informacion &#10;visite: https://github.com/mvelasco93/Rubik&#10;&#10;Desarrolladores del Software:  &#10;                                                     - Andres Antonio Contreras Calle&#10;                                                     - Madelyne Carolina Velasco Mite&#10;                                                     - Edison Jesús Pacalla Guamán&#10;">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+      </TextArea>
+      <ImageView fitHeight="252.0" fitWidth="322.0" layoutX="289.0" layoutY="361.0" pickOnBounds="true">
+         <image>
+            <Image url="@../fondo.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
