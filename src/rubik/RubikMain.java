@@ -7,10 +7,8 @@ package rubik;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.jpl.games.model.Move;
 import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
 import java.io.IOException;
@@ -37,29 +35,21 @@ public class RubikMain extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private BorderPane RubikInterface;
-    public Rubik rubik=new Rubik();
     private Scene scene;
+    
+    public  Rubik rubik=new Rubik();
     public Moves moves=new Moves();
     
     public LocalTime time=LocalTime.now();
     public Timeline timer;
+    
     public final StringProperty clock = new SimpleStringProperty("00:00:00");
     public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
 
-    public Rubik getRubik() {
-        return rubik;
-    }
-
-    public void setRubik(Rubik rubik) {
-        this.rubik = rubik;
-    }
-    
-    
-    
     @Override
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Cubo Rubik");        
+        this.primaryStage.setTitle("Cubo Rubik");     
     
         initRootLayout();
         showRubikInterface();
@@ -73,8 +63,7 @@ public class RubikMain extends Application {
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
-            scene = new Scene(rootLayout);
-            
+            scene = new Scene(rootLayout);           
             
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -91,6 +80,7 @@ public class RubikMain extends Application {
         
             rootLayout.setCenter(RubikInterface);
             RubikInterface.setCenter(rubik.getSubScene());
+            
             RubikInterface.getChildren().stream().filter(withMoveButtons())
                     .forEach(n->{
                         Button b=(Button)n;
@@ -117,33 +107,31 @@ public class RubikMain extends Application {
         }
     }
     
-    private void rotateFace(final String btRot){
+    public void rotateFace(final String btRot){
         RubikInterface.getChildren().stream()
             .filter(withToolbars())
             .forEach(tb->{
                 ((ToolBar)tb).getItems().stream()
                     .filter(withMoveButtons().and(withButtonTextName(btRot)))
-                    .findFirst().ifPresent(n->rubik.isHoveredOnClick().set(((Button)n).isHover()));
+                    .findFirst().ifPresent(n->this.rubik.isHoveredOnClick().set(((Button)n).isHover()));
             });
-        rubik.rotateFace(btRot);
+        this.rubik.rotateFace(btRot);
     }
     
     public void ScrambleCube(){
-        rubik.doScramble();
-        rubik.isOnScrambling().addListener((ov,v,v1)->{
+        this.rubik.doScramble();
+        this.rubik.isOnScrambling().addListener((ov,v,v1)->{
             if(v && !v1){
                 System.out.println("Revuelto!");
                 moves=new Moves();
-                time=LocalTime.now();
-                timer.playFromStart();
             }
         });
     }
     
-    private void doReplay(){
+    public void doReplay(){
         RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(true));
-        rubik.doReplay(moves.getMoves());
-        rubik.isOnReplaying().addListener((ov,v,v1)->{
+        this.rubik.doReplay(moves.getMoves());
+        this.rubik.isOnReplaying().addListener((ov,v,v1)->{
             if(v && !v1){
                 System.out.println("replayed!");
                 RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(false));
@@ -172,6 +160,10 @@ public class RubikMain extends Application {
     }
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    
+    public Rubik getRubik(){
+        return rubik;
     }
     public static void main(String[] args) {
         launch(args);

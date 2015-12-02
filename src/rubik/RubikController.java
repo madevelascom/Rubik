@@ -5,6 +5,7 @@
  */
 package rubik;
 
+import com.jpl.games.model.Rubik;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -15,6 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import rubik.RubikMain;
 
 
 /**
@@ -23,18 +25,10 @@ import javafx.fxml.Initializable;
  */
 public class RubikController extends RubikMain implements Initializable {
     
-    @FXML
-    private LocalTime time=LocalTime.now();
-    @FXML
-    private Timeline timer;
-    @FXML
-    private final StringProperty clock = new SimpleStringProperty("00:00:00");
-    @FXML
-    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+    /*@FXML
+    private Rubik rubik;
+    rubik = new getRubik();*/
     
-    //Al abrir el RootLayout en SceneBuilder, a la accion del Boton es la que llama la funcion
-    //https://gyazo.com/891f77be7ef33d06d683708be4353066
-    //Abre el link para que veas donde tienes que llamar la funcion. 
     @FXML
     private void Scramble(){
         rubik.doReset();
