@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
@@ -18,9 +14,9 @@
                 <Button mnemonicParsing="false" text="Desordenar" />
                 <Button mnemonicParsing="false" text="Resolver" />
                   <Button mnemonicParsing="false" text="Multijugador" />
-                  <Button mnemonicParsing="false" text="Posiciones" />
-                  <Button mnemonicParsing="false" text="Como jugar" />
-                  <Button mnemonicParsing="false" text="Acerca de" />
+                  <Button mnemonicParsing="false" onAction="#pos" text="Posiciones" />
+                  <Button mnemonicParsing="false" onAction="#comojugar" text="Como jugar" />
+                  <Button mnemonicParsing="false" onAction="#acerca" text="Acerca de" />
               </buttons>
             </ButtonBar>
         </buttons>

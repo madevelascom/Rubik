@@ -22,11 +22,13 @@ import java.util.function.Predicate;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -41,14 +43,16 @@ public class RubikMain extends Application {
     private Scene scene;
     
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cubo Rubik");        
     
         initRootLayout();
         showRubikInterface();
+        
+        
     }
-    
+  
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.

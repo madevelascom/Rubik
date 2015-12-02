@@ -7,7 +7,10 @@ package rubik;
 
 import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -23,8 +26,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToolBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -55,6 +62,7 @@ public class RubikController implements Initializable {
        //rubik=new Rubik();
     }
     
+   
     
     @FXML
     private void handleHowTo(ActionEvent event) {
@@ -83,10 +91,34 @@ public class RubikController implements Initializable {
             }
         });
     }
+    @FXML
+    private void pos() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Posiciones.fxml"));    
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void acerca() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Acerca.fxml"));    
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void comojugar() throws IOException, URISyntaxException {
+        Desktop.getDesktop().browse(new URI("http://www.rubikaz.com/resolucion.php"));
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
     
 }

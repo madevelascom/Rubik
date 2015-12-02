@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.AcercaController">
+   <children>
+      <Button fx:id="button" layoutX="400.0" layoutY="148.0" mnemonicParsing="false" onAction="#regresar" prefHeight="42.0" prefWidth="129.0" text="Regresar" />
+      <Label fx:id="label" layoutX="180.0" layoutY="35.0" prefHeight="84.0" prefWidth="493.0" text="Acerca de Rubik's Cube">
+         <font>
+            <Font name="Aparajita Italic" size="60.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
