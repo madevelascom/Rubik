@@ -5,17 +5,13 @@
  */
 package rubik;
 
-import com.jpl.games.model.Rubik;
-
+import com.jpl.games.model.Move;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.net.URL;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import rubik.RubikMain;
-
 
 
 /**
@@ -48,8 +41,9 @@ public class RubikController extends RubikMain implements Initializable {
     }
     
     @FXML
-    private void customexit(){
-         System.exit(0);
+    private void replay(){
+        timer.stop();
+        ReplayCube();
     }
     @FXML
     private void pos() throws IOException {

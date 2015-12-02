@@ -5,6 +5,7 @@
  */
 package rubik;
 
+import com.jpl.games.model.Move;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ import java.util.function.Predicate;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -39,10 +41,10 @@ public class RubikMain extends Application {
     private Scene scene;
     
     public static Rubik rubik=new Rubik();
-    public Moves moves=new Moves();
+    public static Moves moves=new Moves();
     
     public LocalTime time=LocalTime.now();
-    public Timeline timer;
+    public static Timeline timer = new Timeline();
     
     public final StringProperty clock = new SimpleStringProperty("00:00:00");
     public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
@@ -92,7 +94,18 @@ public class RubikMain extends Application {
                         b.setOnAction(e->rotateFace(b.getText()));
                         b.hoverProperty().addListener((ov,b0,b1)->updateArrow(b.getText(),b1));
                     });
+            
+            ChangeListener<Number> clockLis=(ov,l,l1)->clock.set(LocalTime.ofNanoOfDay(l1.longValue()).format(fmt));
 
+            rubik.isOnReplaying().addListener((ov,b,b1)->{
+            if(b&&!b1){
+                rubik.getTimestamp().removeListener(clockLis);
+                if(!rubik.isSolved().get()){
+                    timer.play();
+                }
+            }
+        });
+            
             rubik.isOnRotation().addListener((b0,b1,b2)->{
                 if(b2){
                 // store the button hovered 
@@ -103,6 +116,13 @@ public class RubikMain extends Application {
                     });
             } 
             });
+            
+            rubik.getLastRotation().addListener((ov,v,v1)->{
+            if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
+                moves.addMove(new Move(v1, LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay()));
+            }
+            });
+            
             
             scene.addEventHandler(MouseEvent.ANY, rubik.eventHandler);
             scene.cursorProperty().bind(rubik.getCursor());
@@ -133,8 +153,7 @@ public class RubikMain extends Application {
         });
     }
     
-    public void doReplay(){
-        RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(true));
+    public void ReplayCube(){
         rubik.doReplay(moves.getMoves());
         rubik.isOnReplaying().addListener((ov,v,v1)->{
             if(v && !v1){
