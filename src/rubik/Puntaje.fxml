@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="rubik.PuntajeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.PuntajeController">
    <children>
-      <Button layoutX="338.0" layoutY="75.0" mnemonicParsing="false" onAction="#regresar" text="Regresar a Principal" />
+      <Label layoutX="85.0" layoutY="51.0" text="Tabla de Posiciones">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <TableView layoutX="50.0" layoutY="104.0" prefHeight="260.0" prefWidth="301.0">
+        <columns>
+          <TableColumn prefWidth="100.0" text="Nombre" />
+            <TableColumn prefWidth="95.0" text="Tiempo" />
+          <TableColumn prefWidth="105.0" text="Movimientos" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

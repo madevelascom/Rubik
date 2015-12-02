@@ -22,27 +22,25 @@ import javafx.stage.Stage;
  *
  * @author asus
  */
-public class AcercaController implements Initializable {
+public class PuntajeController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-
-        
+    
     @FXML
     private Label label;
+    
+    
     
     @FXML
     private void salir(ActionEvent event) {   
         System.exit(0);
     }
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
     
 }

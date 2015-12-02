@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import rubik.RubikMain;
@@ -53,7 +54,11 @@ public class RubikController extends RubikMain implements Initializable {
     @FXML
     private void pos() throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Posiciones.fxml"));    
+        Parent root = FXMLLoader.load(getClass().getResource("Puntaje.fxml"));   
+        
+        Image applicationIcon = new Image(getClass().getResourceAsStream("rubik_s_cube.png"));
+        stage.getIcons().add(applicationIcon);
+        stage.setTitle("Tabla de posiciones");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -62,7 +67,11 @@ public class RubikController extends RubikMain implements Initializable {
     @FXML
     private void acerca() throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Acerca.fxml"));    
+        Parent root = FXMLLoader.load(getClass().getResource("Acerca.fxml")); 
+        
+        Image applicationIcon = new Image(getClass().getResourceAsStream("rubik_s_cube.png"));
+        stage.getIcons().add(applicationIcon);
+        stage.setTitle("Acerca de");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -70,7 +79,7 @@ public class RubikController extends RubikMain implements Initializable {
     
     @FXML
     private void comojugar() throws IOException, URISyntaxException {
-        Desktop.getDesktop().browse(new URI("http://www.rubikaz.com/resolucion.php"));
+        Desktop.getDesktop().browse(new URI("http://www.rubikaz.com/paso1.php"));
     }
     
     
