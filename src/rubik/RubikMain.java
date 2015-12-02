@@ -97,7 +97,7 @@ public class RubikMain extends Application {
                         b.setOnAction(e->rotateFace(b.getText()));
                         b.hoverProperty().addListener((ov,b0,b1)->updateArrow(b.getText(),b1));
                     });
-            
+
             rubik.isOnRotation().addListener((b0,b1,b2)->{
                 if(b2){
                 // store the button hovered 

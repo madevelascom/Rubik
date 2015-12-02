@@ -20,7 +20,7 @@
                   <Button mnemonicParsing="false" text="Multijugador" />
                   <Button mnemonicParsing="false" text="Posiciones" />
                   <Button mnemonicParsing="false" text="Como jugar" />
-                  <Button mnemonicParsing="false" text="Acerca de" />
+                  <Button mnemonicParsing="false" onAction="#customexit" text="Acerca de" />
               </buttons>
             </ButtonBar>
         </buttons>

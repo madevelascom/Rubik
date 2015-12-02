@@ -43,7 +43,13 @@ public class RubikController extends RubikMain implements Initializable {
     
     @FXML
     private void Reset(){
-        getRubik().doReset();
+        moves.getMoves().clear();
+        rubik.doReset();
+    }
+    
+    @FXML
+    private void customexit(){
+         System.exit(0);
     }
     
     @Override
