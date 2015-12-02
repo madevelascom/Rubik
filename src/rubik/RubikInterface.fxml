@@ -10,13 +10,19 @@
         <buttons>
             <ButtonBar buttonMinWidth="100.0" prefHeight="40.0" prefWidth="800.0">
               <buttons>
-                  <Button mnemonicParsing="false" text="Reiniciar Cubo" />
-                <Button mnemonicParsing="false" text="Desordenar" />
+                  <Button mnemonicParsing="false" onAction="#Reset" text="Reiniciar Cubo" />
+                <Button mnemonicParsing="false" onAction="#Scramble" text="Desordenar" />
                 <Button mnemonicParsing="false" text="Resolver" />
                   <Button mnemonicParsing="false" text="Multijugador" />
+<<<<<<< HEAD
                   <Button mnemonicParsing="false" onAction="#pos" text="Posiciones" />
                   <Button mnemonicParsing="false" onAction="#comojugar" text="Como jugar" />
                   <Button mnemonicParsing="false" onAction="#acerca" text="Acerca de" />
+=======
+                  <Button mnemonicParsing="false" text="Posiciones" />
+                  <Button mnemonicParsing="false" text="Como jugar" />
+                  <Button mnemonicParsing="false" onAction="#customexit" text="Acerca de" />
+>>>>>>> origin/master
               </buttons>
             </ButtonBar>
         </buttons>

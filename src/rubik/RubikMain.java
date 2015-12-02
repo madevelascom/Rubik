@@ -7,10 +7,8 @@ package rubik;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.jpl.games.model.Move;
 import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
 import java.io.IOException;
@@ -39,13 +37,21 @@ public class RubikMain extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private BorderPane RubikInterface;
-    private Rubik rubik;
     private Scene scene;
     
+    public  Rubik rubik=new Rubik();
+    public Moves moves=new Moves();
+    
+    public LocalTime time=LocalTime.now();
+    public Timeline timer;
+    
+    public final StringProperty clock = new SimpleStringProperty("00:00:00");
+    public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Cubo Rubik");        
+        this.primaryStage.setTitle("Cubo Rubik");     
     
         initRootLayout();
         showRubikInterface();
@@ -61,8 +67,7 @@ public class RubikMain extends Application {
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
-            scene = new Scene(rootLayout);
-            
+            scene = new Scene(rootLayout);           
             
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -78,15 +83,15 @@ public class RubikMain extends Application {
             RubikInterface = (BorderPane) loader.load();
         
             rootLayout.setCenter(RubikInterface);
-            rubik=new Rubik();
             RubikInterface.setCenter(rubik.getSubScene());
+            
             RubikInterface.getChildren().stream().filter(withMoveButtons())
                     .forEach(n->{
                         Button b=(Button)n;
                         b.setOnAction(e->rotateFace(b.getText()));
                         b.hoverProperty().addListener((ov,b0,b1)->updateArrow(b.getText(),b1));
                     });
-            
+
             rubik.isOnRotation().addListener((b0,b1,b2)->{
                 if(b2){
                 // store the button hovered 
@@ -106,15 +111,36 @@ public class RubikMain extends Application {
         }
     }
     
-    private void rotateFace(final String btRot){
+    public void rotateFace(final String btRot){
         RubikInterface.getChildren().stream()
             .filter(withToolbars())
             .forEach(tb->{
                 ((ToolBar)tb).getItems().stream()
                     .filter(withMoveButtons().and(withButtonTextName(btRot)))
-                    .findFirst().ifPresent(n->rubik.isHoveredOnClick().set(((Button)n).isHover()));
+                    .findFirst().ifPresent(n->this.rubik.isHoveredOnClick().set(((Button)n).isHover()));
             });
-        rubik.rotateFace(btRot);
+        this.rubik.rotateFace(btRot);
+    }
+    
+    public void ScrambleCube(){
+        this.rubik.doScramble();
+        this.rubik.isOnScrambling().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("Revuelto!");
+                moves=new Moves();
+            }
+        });
+    }
+    
+    public void doReplay(){
+        RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(true));
+        this.rubik.doReplay(moves.getMoves());
+        this.rubik.isOnReplaying().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("replayed!");
+                RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(false));
+            }
+        });
     }
     
     private void updateArrow(String face, boolean hover){
@@ -138,6 +164,10 @@ public class RubikMain extends Application {
     }
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    
+    public Rubik getRubik(){
+        return rubik;
     }
     public static void main(String[] args) {
         launch(args);
