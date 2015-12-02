@@ -6,13 +6,12 @@
 package rubik;
 
 import com.jpl.games.model.Rubik;
-<<<<<<< HEAD
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-=======
->>>>>>> origin/master
+
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -22,8 +21,9 @@ import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-<<<<<<< HEAD
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,9 +35,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-=======
+
 import rubik.RubikMain;
->>>>>>> origin/master
+
 
 
 /**
@@ -56,11 +56,7 @@ public class RubikController extends RubikMain implements Initializable {
         ScrambleCube();
     }
     
-<<<<<<< HEAD
-   
-    
-=======
->>>>>>> origin/master
+
     @FXML
     private void Reset(){
         moves.getMoves().clear();

@@ -14,15 +14,9 @@
                 <Button mnemonicParsing="false" onAction="#Scramble" text="Desordenar" />
                 <Button mnemonicParsing="false" text="Resolver" />
                   <Button mnemonicParsing="false" text="Multijugador" />
-<<<<<<< HEAD
                   <Button mnemonicParsing="false" onAction="#pos" text="Posiciones" />
                   <Button mnemonicParsing="false" onAction="#comojugar" text="Como jugar" />
                   <Button mnemonicParsing="false" onAction="#acerca" text="Acerca de" />
-=======
-                  <Button mnemonicParsing="false" text="Posiciones" />
-                  <Button mnemonicParsing="false" text="Como jugar" />
-                  <Button mnemonicParsing="false" onAction="#customexit" text="Acerca de" />
->>>>>>> origin/master
               </buttons>
             </ButtonBar>
         </buttons>
