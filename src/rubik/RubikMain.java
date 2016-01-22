@@ -58,6 +58,7 @@ public class RubikMain extends Application {
         this.primaryStage.getIcons().add(applicationIcon);
         initRootLayout();
         showRubikInterface();  
+        ChangeListener<Number> clockLis=(ov,l,l1)->clock.set(LocalTime.ofNanoOfDay(l1.longValue()).format(fmt));
 
     }
   
