@@ -62,6 +62,7 @@ public class Java2MySql {
         Statement  stmt = conn.createStatement();
         String sql = "SELECT date, name, moves, duration FROM record";
         ResultSet rs = stmt.executeQuery(sql); 
+        
         if(rs.next()){
             do{                      
             Record rec = new Record(rs.getDate("date"),rs.getString("name") , 
@@ -74,7 +75,7 @@ public class Java2MySql {
         return recordData;
     }
     
-    public void insertData(Connection conn, Record rec) throws SQLException{
+    public static void insertData(Connection conn, Record rec) throws SQLException{
         String query = "INSERT INTO record(`name`, `moves`, `duration`)"+" VALUES (?, ?, ?); ";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
         preparedStmt.setString(1, rec.getName().toString());

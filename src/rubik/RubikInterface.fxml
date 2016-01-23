@@ -13,8 +13,8 @@
               <buttons>
                   <Button mnemonicParsing="false" onAction="#Reset" text="Reiniciar Cubo" />
                 <Button mnemonicParsing="false" onAction="#Scramble" text="Revolver Cubo" />
-                <Button mnemonicParsing="false" text="Resolver Cubo" />
-                  <Button mnemonicParsing="false" text="Reto" />
+                <Button fx:id="solve" mnemonicParsing="false" text="Resolver Cubo" />
+                  <Button mnemonicParsing="false" onAction="#reto" text="Reto" />
                   <Button mnemonicParsing="false" onAction="#pos" text="Posiciones" />
                   <Button mnemonicParsing="false" onAction="#comojugar" text="¿Cómo jugar?" />
                   <Button mnemonicParsing="false" onAction="#acerca" text="Acerca de" />

@@ -57,6 +57,7 @@ public class RubikMain extends Application {
     public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
     
     public static ObservableList<Record> recordData = FXCollections.observableArrayList();
+    public static Connection actualDB;
     public static Java2MySql instanciaDB = new Java2MySql();
 
     @Override
@@ -205,7 +206,7 @@ public class RubikMain extends Application {
     }
     public static void main(String[] args) throws NamingException, SQLException {
         
-        Connection actualDB = instanciaDB.openConnection();
+        actualDB = instanciaDB.openConnection();
         
         
         if(actualDB != null){
