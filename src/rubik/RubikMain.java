@@ -17,6 +17,7 @@ import com.mvm.sql.Java2MySql;
 import javafx.scene.image.Image;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -55,7 +56,8 @@ public class RubikMain extends Application {
     public final StringProperty clock = new SimpleStringProperty("00:00:00");
     public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
     
-    private ObservableList<Record> recordData = FXCollections.observableArrayList();
+    public static ObservableList<Record> recordData = FXCollections.observableArrayList();
+    public static Java2MySql instanciaDB = new Java2MySql();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -201,12 +203,15 @@ public class RubikMain extends Application {
     public Rubik getRubik(){
         return rubik;
     }
-    public static void main(String[] args) throws NamingException {
-        Java2MySql instanciaDB = new Java2MySql();
+    public static void main(String[] args) throws NamingException, SQLException {
+        
         Connection actualDB = instanciaDB.openConnection();
+        
         
         if(actualDB != null){
             System.out.print("Successful");
+            recordData = Java2MySql.loadData(actualDB);
+         
         }
         
         launch(args);

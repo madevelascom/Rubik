@@ -6,20 +6,13 @@
 package rubik;
 
 import com.mvm.games.records.Record;
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.ResourceBundle;
+import java.sql.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -33,8 +26,7 @@ public abstract class PuntajeController implements Initializable {
      */
     
     @FXML
-    private Label label;
-    
+    private Label label;   
     @FXML
     private TableView<Record> recordTable;
     @FXML
@@ -44,7 +36,7 @@ public abstract class PuntajeController implements Initializable {
     @FXML
     private TableColumn<Record, Number> movimientos;
     @FXML
-    private TableColumn<Record, LocalDateTime> fecha;
+    private TableColumn<Record, Date> fecha;
     
     
     
@@ -55,6 +47,7 @@ public abstract class PuntajeController implements Initializable {
     
     @FXML
     public void initialize() {
+        
         nombres.setCellValueFactory(cellData -> cellData.getValue().getName());
         tiempo.setCellValueFactory(cellData -> cellData.getValue().getDuration());
         movimientos.setCellValueFactory(cellData -> cellData.getValue().getMoves());
