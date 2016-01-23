@@ -8,32 +8,44 @@ package com.mvm.sql;
 import com.mvm.games.records.Record;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.naming.NamingException;
 
 /**
  *
  * @author Administrator
  */
 public class Java2MySql {
-    String url = "jdbc:mariabd://localhost:3306/"; 
-    String dbName = "rubik"; 
-    String driver = "org.mariadb.jdbc.Driver"; 
-    
-    String userName = "root"; 
-    String password = "rubik"; 
-        
-    public void connection(){
-        
-        try { 
-            Class.forName(driver).newInstance(); 
-            Connection conn = DriverManager.getConnection(url+dbName,userName,password); 
-            conn.close(); 
-        } catch (Exception e) { 
-            e.printStackTrace(); }
+    private String url; 
+    private String dbName; 
+    private String driver;  
+    private String userName; 
+    private String password; 
 
+    public Java2MySql() {
+        this.url = "jdbc:mysql://localhost:3306/mysql"; 
+        this.dbName = "rubik"; 
+        this.driver = "com.mysql.jdbc.Driver";  
+        this.userName = "root"; 
+        this.password = "rubik"; 
     }
     
-    public void data(Record rec){
-        
+    public Connection openConnection() throws NamingException{
+        try{
+            Class.forName(driver).newInstance(); 
+            return DriverManager.getConnection(url,userName,password); 
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("error al conectar ");
+        }
+        return null;
     }
-            
+
+    public void closeConnection(Connection salida){
+        try{
+            salida.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("error al conectar ");
+        }
+    }         
 }

@@ -12,8 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.jpl.games.model.Moves;
 import com.jpl.games.model.Rubik;
+import com.mvm.games.records.Record;
+import com.mvm.sql.Java2MySql;
 import javafx.scene.image.Image;
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -23,11 +26,14 @@ import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
+import javax.naming.NamingException;
 
 /**
  *
@@ -48,6 +54,8 @@ public class RubikMain extends Application {
     
     public final StringProperty clock = new SimpleStringProperty("00:00:00");
     public final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.systemDefault());
+    
+    private ObservableList<Record> recordData = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -164,6 +172,9 @@ public class RubikMain extends Application {
         });
     }
     
+    public ObservableList<Record> getRecordData(){
+        return recordData;
+    }
     private void updateArrow(String face, boolean hover){
         rubik.updateArrow(face,hover);
     }
@@ -190,7 +201,14 @@ public class RubikMain extends Application {
     public Rubik getRubik(){
         return rubik;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NamingException {
+        Java2MySql instanciaDB = new Java2MySql();
+        Connection actualDB = instanciaDB.openConnection();
+        
+        if(actualDB != null){
+            System.out.print("Successful");
+        }
+        
         launch(args);
     }
     

@@ -10,62 +10,63 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 
 
 public class Record {
-    private LocalDateTime date;
-    private String name;
-    private int moves;
-    private int duration;
+    private ObjectProperty<LocalDateTime> date;
+    private StringProperty  name;
+    private IntegerProperty moves;
+    private IntegerProperty duration;
 
     public Record(LocalDateTime date, String name, int moves, int duration) {
-        this.date = date;
-        this.name = name;
-        this.moves = moves;
-        this.duration = duration;
-        
+        this.date = new SimpleObjectProperty<>(LocalDateTime.now());
+        this.name = new SimpleStringProperty(name);
+        this.moves = new SimpleIntegerProperty(moves);
+        this.duration = new SimpleIntegerProperty(duration);
     }
 
-    public LocalDateTime getDate() {
+    public ObjectProperty<LocalDateTime> getDate() {
         return date;
     }
 
-    public String getName() {
+    public void setDate(ObjectProperty<LocalDateTime> date) {
+        this.date = date;
+    }
+
+    public StringProperty getName() {
         return name;
     }
 
-    public int getMoves() {
-        return moves;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-    
-    
-
-    public void setDate(LocalDateTime date) {
-        this.date = LocalDateTime.now();
-    }
-
-    public void setName(String name) {
+    public void setName(StringProperty name) {
         this.name = name;
     }
 
-    public void setMoves(int moves) {
+    public IntegerProperty getMoves() {
+        return moves;
+    }
+
+    public void setMoves(IntegerProperty moves) {
         this.moves = moves;
     }
+    
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+
+    public IntegerProperty getDuration() {
+        return duration;
     }
 
-    
-    
+    public void setDuration(IntegerProperty duration) {
+        this.duration = duration;
+    }
+   
+
     /*Convierte a formato de fecha el string de la fecha*/
     public static LocalDateTime toDate(String fecha){
 	LocalDateTime result = LocalDateTime.parse(fecha);
@@ -73,6 +74,7 @@ public class Record {
 		
     }
     
+    /*
     public static HashMap<String, Record> cargarRecords() throws IOException {
         
         //TODO
@@ -104,7 +106,7 @@ public class Record {
     }
 
     public static void guardarCalificaciones(HashMap<String, Record> mp) throws IOException {
-        /*TODO*/
+        /*TODO*//*
         File file = new File("TBD");
         if (!file.exists()){
             file.createNewFile();
@@ -128,6 +130,7 @@ public class Record {
         }
         
     }    
+*/
 
     
 }

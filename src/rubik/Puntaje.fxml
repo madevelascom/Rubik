@@ -5,19 +5,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.PuntajeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.PuntajeController">
    <children>
-      <Label layoutX="85.0" layoutY="51.0" text="Tabla de Posiciones">
+      <Label layoutX="135.0" layoutY="50.0" text="Tabla de Posiciones">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TableView layoutX="50.0" layoutY="104.0" prefHeight="260.0" prefWidth="301.0">
+      <TableView fx:id="recordTable" layoutX="50.0" layoutY="104.0" prefHeight="260.0" prefWidth="400.0">
         <columns>
-          <TableColumn prefWidth="100.0" text="Nombre" />
-            <TableColumn prefWidth="95.0" text="Tiempo" />
-          <TableColumn prefWidth="105.0" text="Movimientos" />
+          <TableColumn fx:id="nombres" prefWidth="100.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="tiempo" prefWidth="100.0" resizable="false" text="Tiempo" />
+          <TableColumn fx:id="movimientos" prefWidth="100.0" resizable="false" text="Movimientos" />
+            <TableColumn fx:id="fecha" prefWidth="100.0" resizable="false" text="Fecha" />
         </columns>
       </TableView>
    </children>
