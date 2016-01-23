@@ -25,7 +25,6 @@ En el desarrollo de este proyecto se usaron las librerias adjuntas con su respec
    - [Scene Builder](http://gluonhq.com/open-source/scene-builder)
    - [MariaBD Java Client](https://mariadb.com/my_portal/download/java-client)
 
-[MariaBD Java Client](https://mariadb.com/my_portal/download/java-client)
 
 # Desarrolladores
 
