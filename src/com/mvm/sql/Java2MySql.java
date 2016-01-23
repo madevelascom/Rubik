@@ -23,11 +23,11 @@ import javax.naming.NamingException;
  * @author Administrator
  */
 public class Java2MySql {
-    private String url; 
-    private String dbName; 
-    private String driver;  
-    private String userName; 
-    private String password; 
+    private final String url; 
+    private final String dbName; 
+    private final String driver;  
+    private final String userName; 
+    private final String password; 
 
     public Java2MySql() {
         this.url = "jdbc:mysql://localhost:3306/rubik"; 

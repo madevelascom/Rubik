@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -35,6 +36,7 @@ public class RubikController extends RubikMain implements Initializable {
     @FXML
     private Label lSolved = new Label("Solved");
    
+    private AnchorPane puntajeLayout;
     
     @FXML
     private void Scramble(){
@@ -56,13 +58,19 @@ public class RubikController extends RubikMain implements Initializable {
     
     @FXML
     private void pos() throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Puntaje.fxml"));
+        puntajeLayout = (AnchorPane) loader.load();
+        
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Puntaje.fxml"));   
+        //Parent root = FXMLLoader.load(getClass().getResource("Puntaje.fxml"));   
         
         Image applicationIcon = new Image(getClass().getResourceAsStream("rubik_s_cube.png"));
         stage.getIcons().add(applicationIcon);
         stage.setTitle("Tabla de posiciones");
-        Scene scene = new Scene(root);
+        
+        Scene scene = new Scene(puntajeLayout);
         stage.setScene(scene);
         stage.show();
     }

@@ -6,7 +6,9 @@
 package rubik;
 
 import com.mvm.games.records.Record;
+import java.net.URL;
 import java.sql.Date;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +21,7 @@ import javafx.scene.control.TableView;
  *
  * @author asus
  */
-public abstract class PuntajeController implements Initializable {
+public class PuntajeController extends RubikMain implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -37,24 +39,18 @@ public abstract class PuntajeController implements Initializable {
     private TableColumn<Record, Number> movimientos;
     @FXML
     private TableColumn<Record, Date> fecha;
-    
-    
-    
+
+     
     @FXML
-    private void salir(ActionEvent event) {   
-        System.exit(0);
-    }
-    
-    @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        recordTable.setItems(RubikMain.getRecordData());
         
         nombres.setCellValueFactory(cellData -> cellData.getValue().getName());
         tiempo.setCellValueFactory(cellData -> cellData.getValue().getDuration());
         movimientos.setCellValueFactory(cellData -> cellData.getValue().getMoves());
         fecha.setCellValueFactory(cellData -> cellData.getValue().getDate());
     }    
-    
-     public void setMainApp(RubikMain mainApp) {
-        recordTable.setItems(mainApp.getRecordData());
-    }
+
+
 }

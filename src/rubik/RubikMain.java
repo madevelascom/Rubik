@@ -174,7 +174,7 @@ public class RubikMain extends Application {
         });
     }
     
-    public ObservableList<Record> getRecordData(){
+    public static ObservableList<Record> getRecordData(){
         return recordData;
     }
     private void updateArrow(String face, boolean hover){
@@ -209,7 +209,7 @@ public class RubikMain extends Application {
         
         
         if(actualDB != null){
-            System.out.print("Successful");
+            System.out.println("Successful");
             recordData = Java2MySql.loadData(actualDB);
          
         }
