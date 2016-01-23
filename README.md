@@ -16,19 +16,21 @@ Para esto utlizaremos una interfaz gráfica, en la cual podra interactuar con el
 
 Adicionalmente, existe un cuarto modo, Modo Reto, en donde el usuario recibe como desafío un cubo desordenado, generado por un servidor central, para que sea resuelto en el menor tiempo posible. El tiempo de resolución será registrado por la aplicación y enviado al servidor para que este mantenga un Leaderboard con los tiempos de todos los participantes del reto. Este Leaderboard mantendrá las estadísticas de todos los retos generados por el servidor.
 
-El desarrollo de este proyecto estará basado en el código de la aplicación RubikFX desarrollado por José Pereda y descrito en su blog http://jperedadnr.blogspot.com/2014/04/rubikfx-solving-rubiks-cube-with-javafx.html. 
+El desarrollo de este proyecto estará basado en el código de la aplicación RubikFX desarrollado por José Pereda y descrito en su [blog] (http://jperedadnr.blogspot.com/2014/04/rubikfx-solving-rubiks-cube-with-javafx.html.)
 
 # Librerías
 
 En el desarrollo de este proyecto se usaron las librerias adjuntas con su respectivo link de descarga.
-   - 3dviewer (http://hg.openjdk.java.net/openjfx/8/master/rt/file/f89b7dc932af/apps/experiments/3DViewer)
-   - scene builder (http://gluonhq.com/open-source/scene-builder)
-      Esta libreria nos permite editar nuestro programa.      
+   - [3DViewer](http://hg.openjdk.java.net/openjfx/8/master/rt/file/f89b7dc932af/apps/experiments/3DViewer)
+   - [Scene Builder](http://gluonhq.com/open-source/scene-builder)
+   - [MariaBD Java Client](https://mariadb.com/my_portal/download/java-client)
+
+[MariaBD Java Client](https://mariadb.com/my_portal/download/java-client)
 
 # Desarrolladores
 
-  - Madelyne Carolina Velasco Mite
-  - Andres Antonio Contreras Calle
-  - Edison Jesús Pacalla Guamán
+  - Madelyne Velasco Mite
+  - Andres Contreras Calle
+  - Edison Pacalla Guamán
 
 
