@@ -14,12 +14,12 @@ import java.sql.DriverManager;
  * @author Administrator
  */
 public class Java2MySql {
-    String url = "jdbc:mysql://localhost:3306/"; 
-    String dbName = "demo"; 
-    String driver = "com.mysql.jdbc.Driver"; 
+    String url = "jdbc:mariabd://localhost:3306/"; 
+    String dbName = "rubik"; 
+    String driver = "org.mariadb.jdbc.Driver"; 
     
     String userName = "root"; 
-    String password = "mypasswd"; 
+    String password = "rubik"; 
         
     public void connection(){
         
