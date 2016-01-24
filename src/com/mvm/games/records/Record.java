@@ -19,8 +19,8 @@ public class Record {
     private IntegerProperty duration;
 
     public Record(Date date, String name, int moves, int duration) {
-        this.date = null;
-        this.name = new SimpleStringProperty("AAA");
+        this.date = new SimpleObjectProperty<>(date);
+        this.name = new SimpleStringProperty(name);
         this.moves = new SimpleIntegerProperty(moves);
         this.duration = new SimpleIntegerProperty(duration);
     }
