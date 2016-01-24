@@ -76,14 +76,16 @@ public class RubikMain extends Application {
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
+            String css = RubikMain.class.getResource("RubikInterface.css").toExternalForm();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(RubikMain.class.getResource("RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = (BorderPane) loader.load();    
 
             // Show the scene containing the root layout.
             scene = new Scene(rootLayout);           
-            
-            primaryStage.setScene(scene);
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(css);
+            primaryStage.setScene(scene);         
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -210,7 +212,7 @@ public class RubikMain extends Application {
         
         
         if(actualDB != null){
-            System.out.println("Successful");
+            System.out.println("Successful connection");
             recordData = Java2MySql.loadData(actualDB);
          
         }

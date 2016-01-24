@@ -12,6 +12,7 @@ import javafx.scene.SubScene;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.paint.RadialGradient;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
@@ -98,8 +99,7 @@ public class ContentModel {
         
         subScene = new SubScene(root3D,paneW,paneH,true,javafx.scene.SceneAntialiasing.BALANCED);
         subScene.setCamera(camera);
-        //Cambiado a blanco?
-        subScene.setFill(Color.WHITE);
+        subScene.setFill(Color.WHITESMOKE);
         setListeners(true);
     }
     

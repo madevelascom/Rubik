@@ -5,19 +5,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" stylesheets="@RubikInterface.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
    <top>
-      <ButtonBar pickOnBounds="false" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar pickOnBounds="false" prefHeight="40.0" prefWidth="715.0" BorderPane.alignment="CENTER">
         <buttons>
             <ButtonBar buttonMinWidth="100.0" pickOnBounds="false" prefHeight="40.0" prefWidth="883.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#Reset" text="Reiniciar Cubo" />
-                <Button mnemonicParsing="false" onAction="#Scramble" text="Revolver Cubo" />
-                <Button fx:id="solve" mnemonicParsing="false" text="Resolver Cubo" />
-                  <Button mnemonicParsing="false" onAction="#reto" text="Reto" />
-                  <Button mnemonicParsing="false" onAction="#pos" text="Posiciones" />
-                  <Button mnemonicParsing="false" onAction="#comojugar" text="¿Cómo jugar?" />
-                  <Button mnemonicParsing="false" onAction="#acerca" text="Acerca de" />
+                  <Button mnemonicParsing="false" onAction="#Reset" stylesheets="@RubikInterface.css" text="Reiniciar Cubo" />
+                <Button mnemonicParsing="false" onAction="#Scramble" stylesheets="@RubikInterface.css" text="Revolver Cubo" />
+                <Button fx:id="solve" mnemonicParsing="false" stylesheets="@RubikInterface.css" text="Resolver Cubo" />
+                  <Button mnemonicParsing="false" onAction="#reto" stylesheets="@RubikInterface.css" text="Reto" />
+                  <Button mnemonicParsing="false" onAction="#pos" stylesheets="@RubikInterface.css" text="Posiciones" />
+                  <Button mnemonicParsing="false" onAction="#comojugar" stylesheets="@RubikInterface.css" text="¿Cómo jugar?" />
+                  <Button mnemonicParsing="false" onAction="#acerca" stylesheets="@RubikInterface.css" text="Acerca de" />
               </buttons>
             </ButtonBar>
         </buttons>
@@ -28,7 +28,7 @@
         <buttons>
             <Label text="Movimientos" />
             <Label id="lTime" fx:id="lTime" nodeOrientation="LEFT_TO_RIGHT" textAlignment="CENTER" />
-          <Button mnemonicParsing="false" onAction="#replay" text="Replay" />
+          <Button mnemonicParsing="false" onAction="#replay" stylesheets="@RubikInterface.css" text="Replay" />
         </buttons>
       </ButtonBar>
    </bottom>
