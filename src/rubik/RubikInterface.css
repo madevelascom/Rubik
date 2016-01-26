@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Author     : Administrator
 */
 
-.button { 
+.common { 
     -fx-background-radius: 0;
     -fx-background-color: #008CBA;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -28,6 +28,152 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
-.button:hover {
+.common:hover {
     -fx-background-color: #3a3a3a;
 }
+
+//General rotations
+.CW{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-faceCW.png');
+}
+
+.CW:hover{
+    -fx-background-color: blueviolet;
+}
+.CCW{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-faceCCW.png');
+}
+.CCW:hover{
+    -fx-background-color: blueviolet;
+}
+
+//Left horizontal rotations
+.BRL{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-BRL.png');
+}
+
+.BRL:hover{
+    -fx-background-color: blueviolet;
+}
+
+.MRL{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-MRL.png');
+}
+
+.MRL:hover{
+    -fx-background-color: blueviolet;
+}
+
+.TRL{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-TRL.png');
+}
+
+.TRL:hover{
+    -fx-background-color: blueviolet;
+}
+
+//Right horizontal rotations
+.BRR{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-BRR.png');
+}
+
+.BRR:hover{
+    -fx-background-color: blueviolet;
+}
+
+.MRR{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-MRR.png');
+}
+
+.MRR:hover{
+    -fx-background-color: blueviolet;
+}
+
+.TRR{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-TRR.png');
+}
+
+.TRR:hover{
+    -fx-background-color: blueviolet;
+}
+
+//Vertical down rotations
+.LCD{
+   -fx-background-radius: 0;
+   -fx-background-color: white;
+   -fx-background-image: url('/resources/rubiks-notation-LCD.png'); 
+}
+
+.LCD:hover{
+    -fx-background-color: blueviolet;
+}
+
+.MCD{
+   -fx-background-radius: 0;
+   -fx-background-color: white;
+   -fx-background-image: url('/resources/rubiks-notation-MCD.png'); 
+}
+
+.MCD:hover{
+    -fx-background-color: blueviolet;
+}
+
+
+.RCD{
+   -fx-background-radius: 0;
+   -fx-background-color: white;
+   -fx-background-image: url('/resources/rubiks-notation-RCD.png'); 
+}
+
+.RCD:hover{
+    -fx-background-color: blueviolet;
+}
+
+//Vertical up rotations
+.LCU{
+   -fx-background-radius: 0;
+   -fx-background-color: white;
+   -fx-background-image: url('/resources/rubiks-notation-LCU.png'); 
+}
+
+.LCU:hover{
+    -fx-background-color: blueviolet;
+}
+
+.MCU{
+   -fx-background-radius: 0;
+   -fx-background-color: white;
+   -fx-background-image: url('/resources/rubiks-notation-MCU.png'); 
+}
+
+.MCU:hover{
+   -fx-background-color: blueviolet;
+}
+
+
+.RCU{
+   -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-image: url('/resources/rubiks-notation-RCU.png'); 
+}
+
+.RCU:hover{
+    -fx-background-color: blueviolet;
+}
+

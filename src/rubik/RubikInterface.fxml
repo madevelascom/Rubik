@@ -1,35 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" stylesheets="@RubikInterface.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
+<BorderPane maxHeight="650.0" maxWidth="950.0" minHeight="650.0" minWidth="950.0" prefHeight="650.0" prefWidth="950.0" stylesheets="@RubikInterface.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rubik.RubikController">
    <top>
-      <ButtonBar pickOnBounds="false" prefHeight="40.0" prefWidth="715.0" BorderPane.alignment="CENTER">
-        <buttons>
-            <ButtonBar buttonMinWidth="100.0" pickOnBounds="false" prefHeight="40.0" prefWidth="883.0">
-              <buttons>
-                  <Button mnemonicParsing="false" onAction="#Reset" stylesheets="@RubikInterface.css" text="Reiniciar Cubo" />
-                <Button mnemonicParsing="false" onAction="#Scramble" stylesheets="@RubikInterface.css" text="Revolver Cubo" />
-                <Button fx:id="solve" mnemonicParsing="false" stylesheets="@RubikInterface.css" text="Resolver Cubo" />
-                  <Button mnemonicParsing="false" onAction="#reto" stylesheets="@RubikInterface.css" text="Reto" />
-                  <Button mnemonicParsing="false" onAction="#pos" stylesheets="@RubikInterface.css" text="Posiciones" />
-                  <Button mnemonicParsing="false" onAction="#comojugar" stylesheets="@RubikInterface.css" text="¿Cómo jugar?" />
-                  <Button mnemonicParsing="false" onAction="#acerca" stylesheets="@RubikInterface.css" text="Acerca de" />
-              </buttons>
-            </ButtonBar>
-        </buttons>
-      </ButtonBar>
+      <HBox alignment="CENTER" prefHeight="25.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#Reset" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Reiniciar Cubo" />
+          <Button mnemonicParsing="false" onAction="#Scramble" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Revolver Cubo" />
+          <Button fx:id="solve" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Resolver Cubo" />
+            <Button mnemonicParsing="false" onAction="#reto" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Reto" />
+            <Button mnemonicParsing="false" onAction="#pos" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Posiciones" />
+            <Button mnemonicParsing="false" onAction="#comojugar" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="¿Cómo jugar?" />
+            <Button mnemonicParsing="false" onAction="#acerca" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Acerca de" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </HBox>
    </top>
-   <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <buttons>
-            <Label text="Movimientos" />
-            <Label id="lTime" fx:id="lTime" nodeOrientation="LEFT_TO_RIGHT" textAlignment="CENTER" />
-          <Button mnemonicParsing="false" onAction="#replay" stylesheets="@RubikInterface.css" text="Replay" />
-        </buttons>
-      </ButtonBar>
-   </bottom>
+   <right>
+      <GridPane BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="180.0" right="15.0" />
+         </BorderPane.margin>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane alignment="TOP_CENTER" prefHeight="250.0" prefWidth="120.0" GridPane.rowIndex="8">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="Fi" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="CCW" stylesheets="@RubikInterface.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="F" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="CW" stylesheets="@RubikInterface.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="U" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="TRL" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="Ei" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="MRL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="Di" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="BRL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="Ui" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="TRR" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="E" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="MRR" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="D" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="BRR" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="Li" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="LCU" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="Mi" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="MCU" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="Ri" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="RCU" stylesheets="@RubikInterface.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="L" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="LCD" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Button fx:id="M" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="MCD" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Button fx:id="R" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="RCD" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+          <Button mnemonicParsing="false" onAction="#replay" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Replay" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label text="Movimientos" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Label text="Tiempo" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+   </right>
 </BorderPane>

@@ -85,6 +85,8 @@ public class RubikMain extends Application {
             scene = new Scene(rootLayout);           
             scene.getStylesheets().clear();
             scene.getStylesheets().add(css);
+            scene.cursorProperty().bind(rubik.getCursor());
+            scene.addEventHandler(MouseEvent.ANY, rubik.eventHandler);
             primaryStage.setScene(scene);         
             primaryStage.show();
         } catch (IOException e) {
@@ -137,7 +139,15 @@ public class RubikMain extends Application {
             }
             });
             
-            
+            rubik.getCount().addListener((ov,v,v1)->{
+                int moves = v1.intValue()+1;
+        });
+        rubik.getLastRotation().addListener((ov,v,v1)->{
+            if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
+                moves.addMove(new Move(v1, LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay()));
+            }
+        });
+        
             scene.addEventHandler(MouseEvent.ANY, rubik.eventHandler);
             scene.cursorProperty().bind(rubik.getCursor());
   
@@ -147,13 +157,13 @@ public class RubikMain extends Application {
     }
     
     public void rotateFace(final String btRot){
-        RubikInterface.getChildren().stream()
+        /*RubikInterface.getChildren().stream()
             .filter(withToolbars())
             .forEach(tb->{
                 ((ToolBar)tb).getItems().stream()
                     .filter(withMoveButtons().and(withButtonTextName(btRot)))
                     .findFirst().ifPresent(n->rubik.isHoveredOnClick().set(((Button)n).isHover()));
-            });
+            });*/
         rubik.rotateFace(btRot);
     }
     

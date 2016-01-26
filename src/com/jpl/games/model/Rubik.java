@@ -122,7 +122,7 @@ public class Rubik {
         */
         rot=new Rotations();
         order=rot.getCube();
-//        System.out.println(""+order.stream().mapToLong(o->mapMeshes.keySet().stream().filter(k->k.contains(o.toString())).count()).sum());
+        //System.out.println(""+order.stream().mapToLong(o->mapMeshes.keySet().stream().filter(k->k.contains(o.toString())).count()).sum());
         
         // save original position
         mapMeshes.forEach((k,v)->mapTransformsOriginal.put(k, v.getTransforms().get(0)));
@@ -133,6 +133,7 @@ public class Rubik {
         
         Note: by prepending the rotations it is not possible to create the animation with a timeline
         like this:
+        
         Rotate r=new Rotate(0,axis);
         v.getTransforms().add(r);
         Timeline timeline=new Timeline();
@@ -157,7 +158,7 @@ public class Rubik {
     // called on toolbars buttons click, on mouse released or while scrambling
     public void rotateFace(final String btRot){
         // then bPreview=false, so a full rotation is performed
-        lastRotation.set("");
+        //lastRotation.set("");
         lastRotation.set(btRot);
         rotateFace(btRot,false,false);
     }

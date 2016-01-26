@@ -25,7 +25,7 @@ public class Model3D {
     /*
     HashMap to store a MeshView of each mesh with its key.
     */
-    private final Map<String,MeshView> mapMeshes=new HashMap<>();
+    public final Map<String,MeshView> mapMeshes=new HashMap<>();
     /*
     custom designed arrows to visually mark the face or axis of rotation.
     */
@@ -38,7 +38,7 @@ public class Model3D {
     public void importObj(){
         try {// cube.obj
             ObjImporter reader = new ObjImporter(getClass().getResource("Cube.obj").toExternalForm());
-            meshes=reader.getMeshes(); // set with the names of 117 meshes
+            meshes= reader.getMeshes(); // set with the names of 117 meshes
             
             /*
             Since the model is oriented with White to the right and blue in the bottom,
@@ -66,7 +66,8 @@ public class Model3D {
             Affine affineIni=new Affine();            
             affineIni.prepend(new Rotate(-90, Rotate.X_AXIS));
             affineIni.prepend(new Rotate(90, Rotate.Z_AXIS));
-            meshes.stream().forEach(s-> { 
+            meshes.stream().forEach(s-> 
+                { 
                 MeshView cubiePart = reader.buildMeshView(s);
                 // every part of the cubie is transformed with both rotations:
                 cubiePart.getTransforms().add(affineIni); 

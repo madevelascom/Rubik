@@ -48,7 +48,48 @@ public class RubikController extends RubikMain implements Initializable {
     private Label lSolved = new Label("Solved");
     @FXML
     private Button solve;
-   
+    
+    @FXML 
+    private Button B;
+    @FXML 
+    private Button Bi;
+    @FXML 
+    private Button D;
+    @FXML 
+    private Button Di;
+    @FXML 
+    private Button E;
+    @FXML 
+    private Button Ei;
+    @FXML 
+    private Button R;
+    @FXML 
+    private Button Ri;
+    @FXML 
+    private Button X;
+    @FXML 
+    private Button Xi;
+    @FXML 
+    private Button L;
+    @FXML 
+    private Button Li;
+    @FXML 
+    private Button M;
+    @FXML 
+    private Button Mi;
+    @FXML 
+    private Button S;
+    @FXML 
+    private Button Si;
+    @FXML 
+    private Button U;
+    @FXML 
+    private Button Ui;
+    @FXML 
+    private Button F;
+    @FXML 
+    private Button Fi;
+    
     private AnchorPane puntajeLayout;
     
     @FXML
@@ -113,6 +154,11 @@ public class RubikController extends RubikMain implements Initializable {
         Scene scene = new Scene(puntajeLayout);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    @FXML
+    private void rotateR(){
+        rotateFace("R");    
     }
     
     @FXML
