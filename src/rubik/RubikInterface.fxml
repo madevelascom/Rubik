@@ -76,6 +76,8 @@
           <Button mnemonicParsing="false" onAction="#replay" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Replay" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Label text="Movimientos" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Label text="Tiempo" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <Label fx:id="lMov" text="Label" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lTime" text="Label" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </right>

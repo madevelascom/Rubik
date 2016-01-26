@@ -21,6 +21,7 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Timer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -43,9 +44,11 @@ import static rubik.RubikMain.actualDB;
 public class RubikController extends RubikMain implements Initializable {
      
     @FXML
-    private Label lTime = new Label(timer.toString());
+    private Label lTime;
     @FXML
-    private Label lSolved = new Label("Solved");
+    private Label lSolved;
+    @FXML
+    private Label lMov;
     @FXML
     private Button solve;
     
@@ -95,15 +98,24 @@ public class RubikController extends RubikMain implements Initializable {
     @FXML
     private void reto() throws SQLException{
         
-                
-        rubik.doReset();
+        lTime.setVisible(true);
+        lMov.setVisible(true);
+      
+        long nowEpoch = System.currentTimeMillis()/1000;
+       
+        rubik.doReset();  
         ScrambleCube();
         
-        LocalDateTime init = LocalDateTime.now();
+        int mov = rubik.getCount().getValue()+1;
+        int timer =(int)(System.currentTimeMillis()/1000-nowEpoch);
+        lMov.setText(mov+" movs");    
+        lTime.setText(timer+"s");
         
         if(rubik.isSolved().getValue()){ 
-            LocalDateTime end = LocalDateTime.now();
-            int tiempo = (int) (end.toEpochSecond(ZoneOffset.UTC) - init.toEpochSecond(ZoneOffset.UTC));
+            
+            long last = System.currentTimeMillis()/1000;
+            int duration = (int) (last - nowEpoch);
+            
             TextInputDialog dialog = new TextInputDialog("nombre");
             dialog.setTitle("!Felicidades!");
             dialog.setHeaderText("¡Has resuelto el cubo Rubik!");
@@ -112,8 +124,7 @@ public class RubikController extends RubikMain implements Initializable {
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
                 Record rec;
-                
-                rec = new Record(null, result.get(), rubik.getCount().getValue(), tiempo);
+                rec = new Record(null, result.get(), rubik.getCount().getValue(), duration);
                 Java2MySql.insertData(actualDB, rec);
             }           
         }      
