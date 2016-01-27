@@ -16,9 +16,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -26,6 +28,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -95,24 +99,36 @@ public class RubikController extends RubikMain implements Initializable {
     
     private AnchorPane puntajeLayout;
     
+       
+    
     @FXML
     private void reto() throws SQLException{
+        
+        rubik.doReset();  
+        ScrambleCube();
+        
+        long nowEpoch = System.currentTimeMillis()/1000;
+         
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {  
+        @Override  
+            public void handle(ActionEvent event) {   
+            lTime.setText((System.currentTimeMillis()/1000-nowEpoch)+" s");  
+            }  
+        }));  
+        
+        timeline.setCycleCount(Animation.INDEFINITE);  
+        timeline.play();
         
         lTime.setVisible(true);
         lMov.setVisible(true);
       
-        long nowEpoch = System.currentTimeMillis()/1000;
-       
-        rubik.doReset();  
-        ScrambleCube();
-        
         int mov = rubik.getCount().getValue()+1;
         int timer =(int)(System.currentTimeMillis()/1000-nowEpoch);
         lMov.setText(mov+" movs");    
-        lTime.setText(timer+"s");
         
         if(rubik.isSolved().getValue()){ 
             
+            timeline.stop();
             long last = System.currentTimeMillis()/1000;
             int duration = (int) (last - nowEpoch);
             
@@ -191,30 +207,10 @@ public class RubikController extends RubikMain implements Initializable {
     }
     
     @FXML
-    private void timer(){
-        lTime.textProperty().bind(clock);
-        timer=new Timeline(new KeyFrame(Duration.ZERO, e->{
-            clock.set(LocalTime.now().minusNanos(time.toNanoOfDay()).format(fmt));
-        }),new KeyFrame(Duration.seconds(1)));
-        
-         timer.setCycleCount(Animation.INDEFINITE);
-        rubik.isSolved().addListener((ov,b,b1)->{
-            if(b1){
-                lSolved.setVisible(true);
-                timer.stop();
-                moves.setTimePlay(LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay());
-                System.out.println(moves);
-            } else {
-                lSolved.setVisible(false);
-            }
-        });
-        
-    }
-    
-    @FXML
     private void solve(){
         
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
