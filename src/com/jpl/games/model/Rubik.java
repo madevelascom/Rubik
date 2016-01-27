@@ -2,11 +2,15 @@ package com.jpl.games.model;
 
 import com.jpl.games.math.Rotations;
 import com.jpl.games.model3d.Model3D;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -44,6 +48,8 @@ import javafx.util.Duration;
  * @author jpereda, April 2014 - @JPeredaDnr
  */
 public class Rubik {
+    
+    public LocalTime time=LocalTime.now();
     
     private final Group cube=new Group();    
     private Map<String,MeshView> mapMeshes=new HashMap<>();
@@ -166,6 +172,7 @@ public class Rubik {
     // called from updateArrow to show a preview with posible cancellation
     // or from toolbars buttons click, on mouse released or while scrambling to perform rotation
     private void rotateFace(final String btRot, boolean bPreview, boolean bCancel){
+        
         if(onRotation.get()){
             return;
         }
@@ -204,7 +211,7 @@ public class Rubik {
         // create animation
         Timeline timeline=new Timeline();
         timeline.getKeyFrames().add(
-            new KeyFrame(Duration.millis(onScrambling.get() || onReplaying.get()?200:(bPreview?100:600)), e->{
+            new KeyFrame(Duration.millis(onScrambling.get() || onReplaying.get()?300:(bPreview?100:600)), e->{
                     rotation.removeListener(rotMap);
                     secondRotation=false;
                     if(bPreview){
@@ -372,6 +379,27 @@ public class Rubik {
         doSequence(sb.toString().trim());
     }
     
+    public void doSolve(Moves moves){
+        Moves order = new Moves();
+        //Movimientos opuestos
+        for (int i = 0; i <moves.getNumMoves(); i=i+2){
+            Move m = moves.getMove(i);
+            System.out.println(m.getFace()+"-->"+getOpposed(m).getFace());
+            order.addMove(getOpposed(m));
+        }
+        
+        StringBuilder sb=new StringBuilder();
+        Stack <String> movements = new Stack<>();
+        for (Move m:order.getMoves()){
+           movements.add(m.getFace());
+        }
+        while(!movements.isEmpty()){
+           sb.append(movements.pop()).append(" ");
+        } 
+        System.out.println("sb: "+sb.toString());
+        doSequence(sb.toString().trim());
+    }
+    
     public void doSequence(String list){
         onScrambling.set(true);
         sequence=Utils.unifyNotation(list);
@@ -470,4 +498,60 @@ public class Rubik {
     
     public void stopEventHandling(){ content.stopEventHandling(); }
     public void resumeEventHandling(){ content.resumeEventHandling(); }
+    
+    public Move getOpposed (Move m){
+        Move result = new Move("X",m.getTimestamp());
+        switch(m.getFace()){    
+            case "R" :
+               result.setFace("Ri"); break;
+            case "Ri":
+                result.setFace("R"); break;
+            case "U":
+                result.setFace("Ui"); break;
+            case "Ui":
+                result.setFace("U"); break;
+            case "F":
+                result.setFace("Fi"); break;
+            case "Fi":
+                result.setFace("F");break;
+            case "Y":
+                result.setFace("Yi");break;
+            case "Yi":
+                result.setFace("Y");break;
+            case "Z":
+                result.setFace("Zi");break;
+            case "Zi":
+                result.setFace("Z");break;
+            case "L":
+                result.setFace("Li");break;
+            case "Li":
+                result.setFace("L");break;
+            case "M":
+                result.setFace("Mi");break;
+            case "Mi":
+                result.setFace("M");break;
+            case "S":
+                result.setFace("Si");break;
+            case "Si":
+                result.setFace("S");break;
+            case "X":
+                result.setFace("Xi");break;
+            case "Xi":
+                result.setFace("X");break;
+            case "B":
+                result.setFace("Bi");break;
+            case "Bi":
+                result.setFace("B");break;
+            case "D":
+                result.setFace("Di");break;
+            case "Di":
+                result.setFace("D");break;
+            case "E":
+                result.setFace("Ei");break;
+            case "Ei":
+                result.setFace("E");break;
+      
+        }
+        return result;
+    }
 }

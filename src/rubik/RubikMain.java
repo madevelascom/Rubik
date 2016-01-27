@@ -21,8 +21,6 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -30,9 +28,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import javax.naming.NamingException;
 
@@ -95,58 +90,39 @@ public class RubikMain extends Application {
     }
     public void showRubikInterface() {
         try {
-            // Load  overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(RubikMain.class.getResource("RubikInterface.fxml"));
             RubikInterface = (BorderPane) loader.load();
             
-            //Load 3d model and buttonbar
             rootLayout.setCenter(RubikInterface);
             RubikInterface.setCenter(rubik.getSubScene());
-            
-            RubikInterface.getChildren().stream().filter(withMoveButtons())
-                    .forEach(n->{
-                        Button b=(Button)n;
-                        b.setOnAction(e->rotateFace(b.getText()));
-                        b.hoverProperty().addListener((ov,b0,b1)->updateArrow(b.getText(),b1));
-                    });
-            
+                      
             ChangeListener<Number> clockLis=(ov,l,l1)->clock.set(LocalTime.ofNanoOfDay(l1.longValue()).format(fmt));
 
             rubik.isOnReplaying().addListener((ov,b,b1)->{
-            if(b&&!b1){
-                rubik.getTimestamp().removeListener(clockLis);
-                if(!rubik.isSolved().get()){
-                    timer.play();
+                if(b&&!b1){
+                    rubik.getTimestamp().removeListener(clockLis);
+                    if(!rubik.isSolved().get()){
+                        timer.play();
+                    }
                 }
-            }
-        });
-            
-            rubik.isOnRotation().addListener((b0,b1,b2)->{
-                if(b2){
-                // store the button hovered 
-                RubikInterface.getChildren().stream().filter(withToolbars())
-                    .forEach(tb->{
-                        ((ToolBar)tb).getItems().stream().filter(withMoveButtons().and(isButtonHovered()))
-                            .findFirst();
-                    });
-            } 
             });
-            
+                       
             rubik.getLastRotation().addListener((ov,v,v1)->{
-            if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
+                if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
                 moves.addMove(new Move(v1, LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay()));
-            }
+                }
             });
             
             rubik.getCount().addListener((ov,v,v1)->{
                 int moves = v1.intValue()+1;
-        });
-        rubik.getLastRotation().addListener((ov,v,v1)->{
-            if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
-                moves.addMove(new Move(v1, LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay()));
-            }
-        });
+            });
+            
+            rubik.getLastRotation().addListener((ov,v,v1)->{
+                if(!rubik.isOnReplaying().get() && !v1.isEmpty()){
+                    moves.addMove(new Move(v1, LocalTime.now().minusNanos(time.toNanoOfDay()).toNanoOfDay()));
+                }
+            });
         
             scene.addEventHandler(MouseEvent.ANY, rubik.eventHandler);
             scene.cursorProperty().bind(rubik.getCursor());
@@ -177,12 +153,24 @@ public class RubikMain extends Application {
         });
     }
     
+    public void SolveCube(){
+        if(moves.getNumMoves()!=0){
+            rubik.doSolve(moves);
+            rubik.isOnReplaying().addListener((ov,v,v1)->{
+            if(v && !v1){
+                System.out.println("Resuelto!");               
+            }
+        });
+        
+        }
+        
+    }
+    
     public void ReplayCube(){
         rubik.doReplay(moves.getMoves());
         rubik.isOnReplaying().addListener((ov,v,v1)->{
             if(v && !v1){
-                System.out.println("replayed!");
-                RubikInterface.getChildren().stream().filter(withToolbars()).forEach(setDisable(false));
+                System.out.println("replayed!");               
             }
         });
     }
@@ -190,25 +178,7 @@ public class RubikMain extends Application {
     public static ObservableList<Record> getRecordData(){
         return recordData;
     }
-    private void updateArrow(String face, boolean hover){
-        rubik.updateArrow(face,hover);
-    }
-  
-    private static Predicate<Node> withToolbars(){
-        return n -> (n instanceof ToolBar);
-    }
-    private static Predicate<Node> withMoveButtons(){
-        return n -> (n instanceof Button) && ((Button)n).getText().length()<=2;
-    }
-    private static Predicate<Node> withButtonTextName(String text){
-        return n -> ((Button)n).getText().equals(text);
-    }
-    private static Predicate<Node> isButtonHovered(){
-        return n -> ((Button)n).isHover();
-    }
-    private static Consumer<Node> setDisable(boolean disable){
-        return n -> n.setDisable(disable);
-    }
+    
     public Stage getPrimaryStage() {
         return primaryStage;
     }

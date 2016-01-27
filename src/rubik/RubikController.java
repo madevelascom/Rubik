@@ -14,22 +14,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
-import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Timer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,6 +43,7 @@ import static rubik.RubikMain.rubik;
 
 public class RubikController extends RubikMain implements Initializable {
      
+    
     @FXML
     private Label lTime;
     @FXML
@@ -59,7 +52,6 @@ public class RubikController extends RubikMain implements Initializable {
     private Label lMov;
     @FXML
     private Button solve;
-    
     @FXML 
     private Button B;
     @FXML 
@@ -102,7 +94,6 @@ public class RubikController extends RubikMain implements Initializable {
     private Button Fi;
     
     private AnchorPane puntajeLayout;
-    
        
     
     @FXML
@@ -213,7 +204,7 @@ public class RubikController extends RubikMain implements Initializable {
     
     @FXML
     private void rotateR(){
-        rotateFace("R");    
+        rotateFace(R.getId());    
     }
     
     @FXML
@@ -236,6 +227,7 @@ public class RubikController extends RubikMain implements Initializable {
     
     @FXML
     private void solve(){
+        SolveCube();
         
     }
     

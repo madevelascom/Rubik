@@ -12,7 +12,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#Reset" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Reiniciar Cubo" />
           <Button mnemonicParsing="false" onAction="#Scramble" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Revolver Cubo" />
-          <Button fx:id="solve" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Resolver Cubo" />
+          <Button fx:id="solve" mnemonicParsing="false" onAction="#solve" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Resolver Cubo" />
             <Button mnemonicParsing="false" onAction="#reto" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Reto" />
             <Button mnemonicParsing="false" onAction="#pos" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="Posiciones" />
             <Button mnemonicParsing="false" onAction="#comojugar" prefHeight="25.0" prefWidth="110.0" styleClass="common" stylesheets="@RubikInterface.css" text="¿Cómo jugar?" />
