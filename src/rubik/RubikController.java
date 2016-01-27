@@ -35,7 +35,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -105,7 +108,14 @@ public class RubikController extends RubikMain implements Initializable {
     @FXML
     private void reto() throws SQLException{
         
-        rubik.doReset();  
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Modo reto");
+        alert.setContentText("¿Deseas continuar? Recuerda que ahora medirás el tiempo que te toma y la cantidad de movimiento que haces.");
+        alert.setHeaderText("El cubo Rubik se va a reiniciar");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            rubik.doReset();  
         ScrambleCube();
         
         long nowEpoch = System.currentTimeMillis()/1000;
@@ -134,25 +144,46 @@ public class RubikController extends RubikMain implements Initializable {
             dialog.setHeaderText("¡Has resuelto el cubo Rubik!");
             dialog.setContentText("Pon tu nombre:");
             
-            Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()){
+            Optional<String> input = dialog.showAndWait();
+            if (input.isPresent()){
                 Record rec;
-                rec = new Record(null, result.get(), rubik.getCount().getValue(), duration);
+                rec = new Record(null, input.get(), rubik.getCount().getValue(), duration);
                 Java2MySql.insertData(actualDB, rec);
             }           
         }      
+        }
+        
     }
     
     @FXML
     private void Scramble(){
-        rubik.doReset();
-        ScrambleCube();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Revolver cubo");
+        alert.setContentText("¿Deseas continuar?");
+        alert.setHeaderText("El cubo Rubik se va a reiniciar y luego se va revolver");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            moves.getMoves().clear();
+            rubik.doReset();
+            ScrambleCube();
+        }
+        
     }
 
     @FXML
     private void Reset(){
-        moves.getMoves().clear();
-        rubik.doReset();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Reinicio");
+        alert.setContentText("¿Deseas continuar?");
+        alert.setHeaderText("El cubo Rubik se va a reiniciar");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            moves.getMoves().clear();
+            rubik.doReset();
+        }
+        
     }
     
     @FXML
