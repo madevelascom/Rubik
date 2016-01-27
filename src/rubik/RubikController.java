@@ -43,6 +43,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import static rubik.RubikMain.actualDB;
+import static rubik.RubikMain.rubik;
 
 
 public class RubikController extends RubikMain implements Initializable {
@@ -109,22 +110,18 @@ public class RubikController extends RubikMain implements Initializable {
         
         long nowEpoch = System.currentTimeMillis()/1000;
          
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {  
-        @Override  
-            public void handle(ActionEvent event) {   
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), (ActionEvent event) -> {
             lTime.setText((System.currentTimeMillis()/1000-nowEpoch)+" s");  
-            }  
-        }));  
+        })); 
+        
+        lMov.textProperty().bind(rubik.getCount().asString());
         
         timeline.setCycleCount(Animation.INDEFINITE);  
         timeline.play();
+    
         
         lTime.setVisible(true);
         lMov.setVisible(true);
-      
-        int mov = rubik.getCount().getValue()+1;
-        int timer =(int)(System.currentTimeMillis()/1000-nowEpoch);
-        lMov.setText(mov+" movs");    
         
         if(rubik.isSolved().getValue()){ 
             

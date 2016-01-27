@@ -76,7 +76,7 @@ public class Rubik {
     private final StringProperty previewFace=new SimpleStringProperty("");
     private final StringProperty lastRotation=new SimpleStringProperty("");
     private final ChangeListener<Number> rotMap;
-    private final IntegerProperty count = new SimpleIntegerProperty(-1);
+    private final IntegerProperty count = new SimpleIntegerProperty(0);
     private final LongProperty timestamp = new SimpleLongProperty(0l);
     
     private double mouseNewX, mouseNewY, mouseIniX, mouseIniY;
@@ -400,7 +400,7 @@ public class Rubik {
             if(v1.intValue()==sequence.size()+1){
                 onScrambling.set(false);
                 onRotation.removeListener(lis);
-                count.set(-1);
+                count.set(0);
             }
         });
         onRotation.addListener(lis);
@@ -418,7 +418,7 @@ public class Rubik {
             mapMeshes.forEach((k,v)->v.getTransforms().setAll(mapTransformsScramble.get(k)));
             order=orderScramble.stream().collect(Collectors.toList());
             rot.setCube(order);
-            count.set(-1);
+            count.set(0);
         } else {
             // restore original
             doReset();
@@ -452,7 +452,7 @@ public class Rubik {
         mapMeshes.forEach((k,v)->v.getTransforms().setAll(mapTransformsOriginal.get(k)));
         order=orderOriginal.stream().collect(Collectors.toList());
         rot.setCube(order);
-        count.set(-1);
+        count.set(0);
     }
     
     public SubScene getSubScene(){ return content.getSubScene(); }
